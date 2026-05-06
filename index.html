@@ -18,9 +18,9 @@
     <button class="tab-btn" onclick="showTab('profile',this)"><span class="ti">👤</span><span>プロフィール</span></button>
     <button class="tab-btn" onclick="showTab('talk',this)"><span class="ti">💬</span><span>対談</span></button>
     <button class="tab-btn" onclick="showTab('music',this)"><span class="ti">🔍</span><span>謎解き</span></button>
-    <button class="tab-btn" onclick="showTab('photos',this)"><span class="ti">📷</span><span>写真集</span></button>
+    <button class="tab-btn" onclick="showTab('photos',this)"><span class="ti">📷</span><span>写真</span></button>
     <button class="tab-btn" onclick="showTab('message',this)"><span class="ti">💌</span><span>メッセージ</span></button>
-    <button class="tab-btn" onclick="showTab('links',this)"><span class="ti">🔗</span><span>リンク</span></button>
+    <button class="tab-btn" onclick="showTab('links',this)"><span class="ti">🎵</span><span>Music</span></button>
   </div>
 </nav>
 
@@ -221,117 +221,61 @@
   </section>
 
 
-  <!-- ===== §5 思い出の写真集 ===== -->
-  <!-- ▼ EDIT: photo-ph を <img src="..."> に差し替え、キャプションも変更 -->
+  <!-- ===== §5 写真 ===== -->
+  <!-- ▼ EDIT: Wedding Share の URL を href="#" の部分に入力してください -->
   <section id="photos" class="section">
     <div class="sec-head">
-      <div class="sec-title">思い出の写真集<span class="sec-title-en">Our Story</span></div>
+      <div class="sec-title">写真<span class="sec-title-en">Photo Sharing</span></div>
       <div class="sec-ornament"><div class="sec-ornament-diamond"></div></div>
     </div>
-    <p class="photo-intro">2人のこれまでの思い出を集めました。<br>一枚一枚、大切な記憶です。</p>
 
-    <!-- セクション切り替えボタン -->
-    <div class="photo-toggle">
-      <button class="ptoggle-photo active" onclick="showPhotoSection('couple', this)">🌿 二人の写真</button>
-      <button class="ptoggle-photo" onclick="showPhotoSection('groom', this)">🤵 新郎</button>
-      <button class="ptoggle-photo" onclick="showPhotoSection('bride', this)">👰 新婦</button>
-    </div>
+    <p class="photo-intro">
+      今日の素敵な瞬間をみんなでシェアしましょう。<br>
+      下のボタンから写真の閲覧・投稿ができます。
+    </p>
 
-    <!-- 二人の写真 -->
-    <div id="photos-couple" class="photo-panel active">
-      <div class="photo-grid">
-        <div class="photo-item wide">
-          <!-- <img src="images/couple1.jpg" alt="出会いのころ"> -->
-          <div class="photo-ph"><span class="ph-i">🌸</span><span class="ph-c">出会いのころ</span></div>
-          <div class="photo-cap">出会いのころ</div><!-- ▼ キャプションを変更 -->
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/couple2.jpg" alt="初旅行"> -->
-          <div class="photo-ph"><span class="ph-i">🏖️</span><span class="ph-c">初旅行</span></div>
-          <div class="photo-cap">初旅行</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/couple3.jpg" alt="花火大会"> -->
-          <div class="photo-ph"><span class="ph-i">🎆</span><span class="ph-c">花火大会</span></div>
-          <div class="photo-cap">花火大会</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/couple4.jpg" alt="プロポーズ"> -->
-          <div class="photo-ph"><span class="ph-i">💍</span><span class="ph-c">プロポーズ</span></div>
-          <div class="photo-cap">プロポーズ</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/couple5.jpg" alt="入籍日"> -->
-          <div class="photo-ph"><span class="ph-i">✨</span><span class="ph-c">入籍日</span></div>
-          <div class="photo-cap">入籍日</div>
-        </div>
-        <div class="photo-item wide">
-          <!-- <img src="images/couple6.jpg" alt="前撮り"> -->
-          <div class="photo-ph"><span class="ph-i">👗</span><span class="ph-c">前撮り</span></div>
-          <div class="photo-cap">前撮り</div>
-        </div>
+    <!-- 写真共有リンク -->
+    <!-- ▼ href="#" を Wedding Share の URL に変更 -->
+    <a class="ws-link-btn" href="#" target="_blank" rel="noopener">
+      <span class="ws-link-icon">📸</span>
+      <span class="ws-link-text">写真共有はこちらから</span>
+      <span class="ws-link-arrow">›</span>
+    </a>
+
+    <div class="divider"><span>✦</span></div>
+
+    <!-- Wedding Share 使い方 -->
+    <div class="ws-guide-head">Wedding Share の使い方</div>
+
+    <div class="ws-step">
+      <div class="ws-step-num">1</div>
+      <div class="ws-step-body">
+        <div class="ws-step-title">アプリをダウンロード</div>
+        <div class="ws-step-desc">App Store または Google Play で「Wedding Share」と検索し、アプリをインストールしてください。</div>
       </div>
     </div>
 
-    <!-- 新郎の写真 -->
-    <div id="photos-groom" class="photo-panel">
-      <div class="photo-grid">
-        <div class="photo-item wide">
-          <!-- <img src="images/groom1.jpg" alt="新郎の写真1"> -->
-          <div class="photo-ph"><span class="ph-i">🌿</span><span class="ph-c">子どものころ</span></div>
-          <div class="photo-cap">子どものころ</div><!-- ▼ キャプションを変更 -->
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/groom2.jpg" alt="新郎の写真2"> -->
-          <div class="photo-ph"><span class="ph-i">⚽</span><span class="ph-c">趣味・スポーツ</span></div>
-          <div class="photo-cap">趣味・スポーツ</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/groom3.jpg" alt="新郎の写真3"> -->
-          <div class="photo-ph"><span class="ph-i">🎓</span><span class="ph-c">学生時代</span></div>
-          <div class="photo-cap">学生時代</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/groom4.jpg" alt="新郎の写真4"> -->
-          <div class="photo-ph"><span class="ph-i">🏔️</span><span class="ph-c">旅の思い出</span></div>
-          <div class="photo-cap">旅の思い出</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/groom5.jpg" alt="新郎の写真5"> -->
-          <div class="photo-ph"><span class="ph-i">😊</span><span class="ph-c">最近の一枚</span></div>
-          <div class="photo-cap">最近の一枚</div>
-        </div>
+    <div class="ws-step">
+      <div class="ws-step-num">2</div>
+      <div class="ws-step-body">
+        <div class="ws-step-title">アルバムに参加</div>
+        <div class="ws-step-desc">上のボタンからリンクを開くか、招待コードを入力して本日のアルバムに参加してください。</div>
       </div>
     </div>
 
-    <!-- 新婦の写真 -->
-    <div id="photos-bride" class="photo-panel">
-      <div class="photo-grid">
-        <div class="photo-item wide">
-          <!-- <img src="images/bride1.jpg" alt="新婦の写真1"> -->
-          <div class="photo-ph"><span class="ph-i">🌸</span><span class="ph-c">子どものころ</span></div>
-          <div class="photo-cap">子どものころ</div><!-- ▼ キャプションを変更 -->
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/bride2.jpg" alt="新婦の写真2"> -->
-          <div class="photo-ph"><span class="ph-i">🎨</span><span class="ph-c">趣味・習い事</span></div>
-          <div class="photo-cap">趣味・習い事</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/bride3.jpg" alt="新婦の写真3"> -->
-          <div class="photo-ph"><span class="ph-i">🎓</span><span class="ph-c">学生時代</span></div>
-          <div class="photo-cap">学生時代</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/bride4.jpg" alt="新婦の写真4"> -->
-          <div class="photo-ph"><span class="ph-i">🌺</span><span class="ph-c">旅の思い出</span></div>
-          <div class="photo-cap">旅の思い出</div>
-        </div>
-        <div class="photo-item">
-          <!-- <img src="images/bride5.jpg" alt="新婦の写真5"> -->
-          <div class="photo-ph"><span class="ph-i">😊</span><span class="ph-c">最近の一枚</span></div>
-          <div class="photo-cap">最近の一枚</div>
-        </div>
+    <div class="ws-step">
+      <div class="ws-step-num">3</div>
+      <div class="ws-step-body">
+        <div class="ws-step-title">写真を投稿・閲覧</div>
+        <div class="ws-step-desc">撮影した写真をアップロードすると、ゲスト全員と共有されます。他の方の写真も自由にご覧いただけます。</div>
+      </div>
+    </div>
+
+    <div class="ws-step">
+      <div class="ws-step-num">4</div>
+      <div class="ws-step-body">
+        <div class="ws-step-title">写真をダウンロード</div>
+        <div class="ws-step-desc">お気に入りの写真は保存してお持ち帰りください。式後もアルバムはしばらく閲覧できます。</div>
       </div>
     </div>
 
@@ -375,7 +319,7 @@
   <!-- ▼ EDIT: href="#" を実際のURLに変更 -->
   <section id="links" class="section">
     <div class="sec-head">
-      <div class="sec-title">各種リンク<span class="sec-title-en">Links</span></div>
+      <div class="sec-title">Today's Music<span class="sec-title-en">Wedding Playlist</span></div>
       <div class="sec-ornament"><div class="sec-ornament-diamond"></div></div>
     </div>
 
