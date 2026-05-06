@@ -11,6 +11,42 @@ const UNLOCK_TIME = new Date('2026-05-06T14:00:00+09:00'); // 2026年5月6日 14
 /* 公開時刻制限があるタブID */
 const LOCKED_TABS = ['links'];
 
+/* =====================================================
+   Today's Music — 曲データ
+   =======================================================
+   ▼▼▼ 曲名・アーティスト・URLをここに入力してください ▼▼▼
+
+   書き方：
+     { scene: "シーン名", icon: "絵文字", title: "曲名", artist: "アーティスト名", url: "URL" },
+
+   url は Spotify・YouTube などのリンク。不要なら "#" のまま。
+   ======================================================= */
+const PLAYLIST = [
+  { scene: "入場",           icon: "🎵", title: "曲名を入力してください", artist: "アーティスト名", url: "#" },
+  { scene: "乾杯",           icon: "🥂", title: "曲名を入力してください", artist: "アーティスト名", url: "#" },
+  { scene: "ケーキカット",   icon: "🎂", title: "曲名を入力してください", artist: "アーティスト名", url: "#" },
+  { scene: "キャンドルサービス", icon: "🕯️", title: "曲名を入力してください", artist: "アーティスト名", url: "#" },
+  { scene: "手紙の朗読",     icon: "💌", title: "曲名を入力してください", artist: "アーティスト名", url: "#" },
+  { scene: "退場",           icon: "🌅", title: "曲名を入力してください", artist: "アーティスト名", url: "#" },
+];
+
+/* 曲カードを描画 */
+function renderPlaylist() {
+  const container = document.getElementById('musicList');
+  if (!container) return;
+  container.innerHTML = PLAYLIST.map(song => `
+    <a class="music-card" href="${song.url}" target="_blank" rel="noopener">
+      <div class="music-jacket">${song.icon}</div>
+      <div class="music-info">
+        <div class="music-scene">${song.scene}</div>
+        <div class="music-title">${song.title}</div>
+        <div class="music-artist">${song.artist}</div>
+      </div>
+      <span class="music-link-icon">›</span>
+    </a>
+  `).join('');
+}
+
 /* -----------------------------------------------------
    タブ切り替え
    ----------------------------------------------------- */
@@ -24,6 +60,9 @@ function showTab(id, btn) {
   // 通常の切り替え処理
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+
+  // Today's Music タブなら曲カードを描画
+  if (id === 'links') renderPlaylist();
 
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');

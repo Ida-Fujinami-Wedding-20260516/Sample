@@ -318,70 +318,15 @@
   <!-- ===== §7 各種リンク ===== -->
   <!-- ▼ EDIT: href="#" を実際のURLに変更 -->
   <!-- ===== §7 Today's Music ===== -->
-  <!-- ▼ EDIT: 曲名・アーティスト・href（Spotify/YouTubeのURL）を変更 -->
+  <!-- 曲データは script.js の PLAYLIST に記載（解禁前はソースにも表示されません） -->
   <section id="links" class="section">
     <div class="sec-head">
       <div class="sec-title">Today's Music<span class="sec-title-en">Wedding Playlist</span></div>
       <div class="sec-ornament"><div class="sec-ornament-diamond"></div></div>
     </div>
     <p class="music-intro">今日のために選んだ、大切な曲たちです。<br>ぜひ曲名をタップして聴いてみてください♪</p>
-
-    <!-- ▼ href をSpotify/YouTubeのURLに変更、曲名・アーティストも編集 -->
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🎵</div>
-      <div class="music-info">
-        <div class="music-scene">入場</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🥂</div>
-      <div class="music-info">
-        <div class="music-scene">乾杯</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🎂</div>
-      <div class="music-info">
-        <div class="music-scene">ケーキカット</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🕯️</div>
-      <div class="music-info">
-        <div class="music-scene">キャンドルサービス</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">💌</div>
-      <div class="music-info">
-        <div class="music-scene">手紙の朗読</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🌅</div>
-      <div class="music-info">
-        <div class="music-scene">退場</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-
+    <!-- 曲カードはJavaScriptで動的に生成されます -->
+    <div id="musicList"></div>
   </section>
 
 </main>
