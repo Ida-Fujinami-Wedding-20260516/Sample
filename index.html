@@ -7,489 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    /* =========================================
-       CSS カスタムプロパティ（和モダン配色）
-       ========================================= */
-    :root {
-      --washi:      #f9f6ef;
-      --white:      #fdfaf4;
-      --brown:      #2d2418;
-      --gold:       #b8975a;
-      --gold-light: #e8d5a3;
-      --gold-mid:   #c9a96e;
-      --border:     #d4c4a0;
-      --gray:       #8a7d6b;
-      --bubble-r:   #f0ebe0;
-      --tab-h:      62px;
-    }
-
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: var(--washi);
-      color: var(--brown);
-      min-height: 100vh;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* 和紙テクスチャ */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* =========================================
-       タブナビゲーション（上部固定・横スクロール）
-       ========================================= */
-    .tab-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      background: rgba(253,250,244,0.96);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      height: var(--tab-h);
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .tab-nav::-webkit-scrollbar { display: none; }
-
-    .tab-nav-inner {
-      display: flex;
-      height: 100%;
-      padding: 0 8px;
-      min-width: max-content;
-    }
-
-    .tab-btn {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      padding: 8px 14px 6px;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      color: var(--gray);
-      background: none;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      white-space: nowrap;
-      transition: color 0.25s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .tab-btn .ti { font-size: 19px; line-height: 1; }
-    .tab-btn.active { color: var(--brown); font-weight: 500; }
-    .tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 10px; right: 10px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 2px 2px 0 0;
-    }
-
-    /* =========================================
-       メインコンテンツ
-       ========================================= */
-    .main {
-      position: relative;
-      z-index: 1;
-      padding-top: calc(var(--tab-h) + 4px);
-      padding-bottom: 48px;
-    }
-
-    .section {
-      display: none;
-      padding: 28px 18px 16px;
-      animation: fadeUp 0.35s ease both;
-    }
-    .section.active { display: block; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* =========================================
-       共通パーツ
-       ========================================= */
-    .sec-head { text-align: center; margin-bottom: 28px; }
-    .sec-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 20px;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      color: var(--brown);
-    }
-    .sec-title-en {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
-    .sec-ornament {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 10px auto 0;
-      width: 160px;
-    }
-    .sec-ornament::before, .sec-ornament::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-    }
-    .sec-ornament-diamond {
-      width: 7px; height: 7px;
-      background: var(--gold);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    .divider {
-      display: flex; align-items: center; gap: 12px;
-      margin: 24px 0;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-    }
-    .divider span { color: var(--gold); font-size: 14px; }
-
-    /* =========================================
-       §1 ご挨拶
-       ========================================= */
-    .hero-img-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 28px;
-      background: linear-gradient(160deg, var(--gold-light) 0%, var(--gold-mid) 100%);
-    }
-    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 10px;
-    }
-    .hero-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 14px;
-      border: 1px solid rgba(255,255,255,0.55);
-      border-radius: 3px;
-    }
-    .hero-placeholder .ph-icon { font-size: 40px; opacity: 0.55; }
-    .hero-placeholder .ph-text {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 12px;
-      color: rgba(45,36,24,0.55);
-      letter-spacing: 0.15em;
-    }
-
-    .couple-block { text-align: center; margin-bottom: 24px; }
-    .couple-names {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 26px; font-weight: 500;
-      letter-spacing: 0.3em;
-      color: var(--brown);
-      margin-bottom: 8px;
-    }
-    .couple-amp { font-size: 20px; color: var(--gold); margin: 0 10px; font-weight: 300; }
-    .wedding-date { font-size: 12px; letter-spacing: 0.25em; color: var(--gray); }
-    .wedding-venue { font-size: 12px; letter-spacing: 0.12em; color: var(--gray); margin-top: 4px; }
-
-    .greeting-text {
-      font-size: 14px; line-height: 2.1;
-      letter-spacing: 0.05em;
-      color: var(--brown);
-      text-align: justify;
-    }
-    .greeting-sign {
-      margin-top: 20px; text-align: right;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 13px; letter-spacing: 0.15em; color: var(--gray);
-    }
-
-    /* =========================================
-       §2 プロフィール
-       ========================================= */
-    .profile-toggle {
-      display: flex;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 22px;
-    }
-    .ptoggle-btn {
-      flex: 1; padding: 12px 8px;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 14px; letter-spacing: 0.1em;
-      border: none; background: none;
-      cursor: pointer; color: var(--gray);
-      transition: all 0.25s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .ptoggle-btn.active { background: var(--brown); color: var(--white); }
-
-    .profile-panel { display: none; }
-    .profile-panel.active { display: block; animation: fadeUp 0.3s ease both; }
-
-    .profile-avatar-wrap {
-      width: 130px; height: 130px;
-      margin: 0 auto 18px;
-      position: relative;
-    }
-    .profile-avatar-wrap::before {
-      content: '';
-      position: absolute; inset: -7px;
-      border: 1.5px solid var(--gold-light);
-      border-radius: 50%;
-    }
-    .profile-avatar-wrap::after {
-      content: '';
-      position: absolute; inset: -12px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-    }
-    .profile-avatar {
-      width: 130px; height: 130px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 40px; overflow: hidden;
-    }
-    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-    .profile-name {
-      text-align: center;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 22px; font-weight: 500;
-      letter-spacing: 0.25em; margin-bottom: 3px;
-    }
-    .profile-role {
-      text-align: center;
-      font-size: 10px; letter-spacing: 0.25em;
-      color: var(--gold); margin-bottom: 22px;
-    }
-
-    .profile-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
-    .profile-table tr { border-bottom: 1px solid var(--border); }
-    .profile-table td { padding: 11px 6px; font-size: 13px; line-height: 1.7; vertical-align: top; }
-    .profile-table td:first-child { width: 28%; color: var(--gray); letter-spacing: 0.05em; padding-top: 13px; }
-
-    .message-quote {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 8px; padding: 16px 16px 14px; position: relative;
-    }
-    .message-quote::before {
-      content: '\275D';
-      position: absolute; top: -11px; left: 14px;
-      font-size: 30px; color: var(--gold-light); line-height: 1;
-    }
-    .message-quote p { font-size: 13px; line-height: 2; color: var(--brown); padding-top: 4px; }
-
-    /* =========================================
-       §3 対談
-       ========================================= */
-    .talk-q { text-align: center; margin: 20px 0 16px; }
-    .talk-q span {
-      display: inline-block;
-      background: var(--brown); color: var(--white);
-      font-family: 'Noto Serif JP', serif;
-      font-size: 13px; letter-spacing: 0.1em;
-      padding: 7px 20px; border-radius: 20px;
-    }
-
-    .talk-row { display: flex; gap: 10px; margin-bottom: 14px; align-items: flex-start; }
-    .talk-row.right { flex-direction: row-reverse; }
-
-    .talk-avt {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid));
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 17px; border: 1.5px solid var(--border); overflow: hidden;
-    }
-    .talk-avt img { width: 100%; height: 100%; object-fit: cover; }
-
-    .talk-bwrap { flex: 1; min-width: 0; }
-    .talk-person { font-size: 10px; color: var(--gray); margin-bottom: 4px; letter-spacing: 0.05em; }
-    .talk-row.right .talk-person { text-align: right; }
-
-    .talk-bubble {
-      display: inline-block; max-width: 100%;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 0 12px 12px 12px;
-      padding: 11px 14px; font-size: 13px; line-height: 1.85; color: var(--brown);
-    }
-    .talk-row.right .talk-bubble {
-      border-radius: 12px 0 12px 12px;
-      background: var(--bubble-r); float: right;
-    }
-    .talk-row.right .talk-bwrap { text-align: right; }
-    .talk-row.right .talk-bwrap::after { content: ''; display: block; clear: both; }
-
-    /* =========================================
-       §4 Music
-       ========================================= */
-    .music-intro { font-size: 13px; text-align: center; color: var(--gray); line-height: 1.85; margin-bottom: 22px; }
-
-    .music-card {
-      display: flex; align-items: center; gap: 14px;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 13px; margin-bottom: 11px;
-      text-decoration: none; color: inherit;
-      transition: transform 0.15s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .music-card:active { transform: scale(0.98); }
-
-    .music-jacket {
-      width: 56px; height: 56px; border-radius: 7px;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid));
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; overflow: hidden;
-    }
-    .music-jacket img { width: 100%; height: 100%; object-fit: cover; border-radius: 7px; }
-
-    .music-info { flex: 1; min-width: 0; }
-    .music-scene { font-size: 10px; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 3px; text-transform: uppercase; }
-    .music-title { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
-    .music-artist { font-size: 12px; color: var(--gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .music-link-icon { color: var(--border); font-size: 16px; flex-shrink: 0; }
-
-    /* =========================================
-       §5 写真集
-       ========================================= */
-    .photo-intro { font-size: 13px; text-align: center; color: var(--gray); line-height: 1.85; margin-bottom: 20px; }
-
-    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .photo-item { position: relative; border-radius: 5px; overflow: hidden; }
-    .photo-item.wide { grid-column: 1 / -1; }
-    .photo-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
-    .photo-item.wide img { aspect-ratio: 16 / 9; }
-
-    .photo-ph {
-      width: 100%; aspect-ratio: 1 / 1;
-      background: linear-gradient(135deg, var(--gold-light) 0%, #c4b495 100%);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 6px;
-    }
-    .photo-item.wide .photo-ph { aspect-ratio: 16 / 9; }
-    .photo-ph .ph-i { font-size: 26px; opacity: 0.5; }
-    .photo-ph .ph-c { font-size: 10px; color: var(--gray); letter-spacing: 0.1em; }
-
-    .photo-cap {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(30,26,20,0.65));
-      color: white; font-size: 11px; letter-spacing: 0.05em;
-      padding: 20px 8px 7px;
-    }
-
-    /* =========================================
-       §6 メッセージ
-       ========================================= */
-    .msg-intro { font-size: 13px; text-align: center; color: var(--gray); line-height: 1.85; margin-bottom: 22px; }
-
-    .msg-search-box {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 12px; padding: 20px; margin-bottom: 20px;
-    }
-    .msg-search-label { font-family: 'Noto Serif JP', serif; font-size: 14px; text-align: center; color: var(--brown); margin-bottom: 14px; letter-spacing: 0.1em; }
-    .msg-input-row { display: flex; gap: 8px; }
-    .msg-input {
-      flex: 1; padding: 12px 14px;
-      border: 1px solid var(--border); border-radius: 8px;
-      font-family: 'Noto Sans JP', sans-serif; font-size: 15px;
-      background: var(--washi); color: var(--brown); outline: none;
-      transition: border-color 0.2s; -webkit-appearance: none;
-    }
-    .msg-input:focus { border-color: var(--gold); }
-    .msg-search-btn {
-      padding: 12px 18px; background: var(--brown); color: var(--white);
-      border: none; border-radius: 8px;
-      font-family: 'Noto Sans JP', sans-serif; font-size: 13px;
-      cursor: pointer; letter-spacing: 0.05em; white-space: nowrap;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .msg-search-btn:active { background: var(--gold-mid); }
-
-    .msg-result {
-      display: none;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 12px; padding: 24px 20px;
-      position: relative; overflow: hidden;
-      animation: fadeUp 0.3s ease both;
-    }
-    .msg-result.show { display: block; }
-    .msg-result::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
-    }
-    .msg-to { font-size: 11px; color: var(--gray); margin-bottom: 5px; letter-spacing: 0.1em; }
-    .msg-name { font-family: 'Noto Serif JP', serif; font-size: 21px; font-weight: 500; letter-spacing: 0.2em; color: var(--brown); margin-bottom: 18px; }
-    .msg-body { font-size: 14px; line-height: 2.1; color: var(--brown); }
-    .msg-sign { margin-top: 20px; text-align: right; font-family: 'Noto Serif JP', serif; font-size: 12px; color: var(--gray); letter-spacing: 0.15em; }
-
-    .msg-notfound { display: none; text-align: center; padding: 24px; color: var(--gray); font-size: 14px; line-height: 1.85; }
-    .msg-notfound.show { display: block; }
-
-    /* =========================================
-       §7 リンク
-       ========================================= */
-    .link-card {
-      display: flex; align-items: center; gap: 16px;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px; margin-bottom: 11px;
-      text-decoration: none; color: inherit;
-      transition: transform 0.15s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .link-card:active { transform: scale(0.98); }
-    .link-icon-wrap {
-      width: 46px; height: 46px; border-radius: 11px;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0;
-    }
-    .link-text { flex: 1; min-width: 0; }
-    .link-title { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 500; margin-bottom: 3px; }
-    .link-desc { font-size: 12px; color: var(--gray); }
-    .link-arrow { color: var(--border); font-size: 17px; flex-shrink: 0; }
-
-    /* フッター */
-    .site-footer {
-      text-align: center; padding: 32px 20px 20px;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 12px; color: var(--gray); letter-spacing: 0.15em;
-    }
-    .site-footer .kamon { font-size: 22px; margin-bottom: 8px; color: var(--gold); }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -521,20 +39,21 @@
     </div>
 
     <div class="couple-block">
-      <div class="couple-names">新郎の名前<span class="couple-amp">&amp;</span>新婦の名前</div>
-      <div class="wedding-date">2025年○月○日（○）</div>
-      <div class="wedding-venue">○○ホテル ○○の間</div>
+      <div class="couple-names">新郎の名前<span class="couple-amp">&amp;</span>新婦の名前</div><!-- ▼ 変更 -->
+      <div class="wedding-date">2025年○月○日（○）</div><!-- ▼ 変更 -->
+      <div class="wedding-venue">○○ホテル ○○の間</div><!-- ▼ 変更 -->
     </div>
 
     <div class="divider"><span>✦</span></div>
 
+    <!-- ▼ ご挨拶文を編集 -->
     <p class="greeting-text">
       本日はご多用の中、私たちの結婚式にお越しくださり、誠にありがとうございます。<br><br>
       皆さまにお会いできることを、二人してとても楽しみにしておりました。<br><br>
       このプロフィールブックは、私たちのことをもっと知っていただけたらという思いでご用意しました。どうぞお気軽にご覧ください。<br><br>
       今日という特別な日を、大切な皆さまとともに過ごせることが、この上ない幸せです。どうぞ最後まで楽しんでいただけますように。
     </p>
-    <p class="greeting-sign">新郎の名前 ・ 新婦の名前</p>
+    <p class="greeting-sign">新郎の名前 ・ 新婦の名前</p><!-- ▼ 変更 -->
 
   </section>
 
@@ -560,9 +79,10 @@
           🤵
         </div>
       </div>
-      <div class="profile-name">新郎の名前</div>
+      <div class="profile-name">新郎の名前</div><!-- ▼ 変更 -->
       <div class="profile-role">Groom</div>
       <table class="profile-table">
+        <!-- ▼ 各行の右側を編集 -->
         <tr><td>生年月日</td><td>19○○年○月○日</td></tr>
         <tr><td>出身地</td><td>○○県○○市</td></tr>
         <tr><td>血液型</td><td>○型</td></tr>
@@ -573,6 +93,7 @@
         <tr><td>彼女の好きなところ</td><td>○○なところ、○○なところ</td></tr>
       </table>
       <div class="message-quote">
+        <!-- ▼ 新郎メッセージを編集 -->
         <p>今日この日、皆さまへ感謝の気持ちをお伝えしたいと思います。<br>これからも○○と二人で支え合い、笑顔あふれる家庭を築いていきたいと思います。どうぞよろしくお願いいたします。</p>
       </div>
     </div>
@@ -585,9 +106,10 @@
           👰
         </div>
       </div>
-      <div class="profile-name">新婦の名前</div>
+      <div class="profile-name">新婦の名前</div><!-- ▼ 変更 -->
       <div class="profile-role">Bride</div>
       <table class="profile-table">
+        <!-- ▼ 各行の右側を編集 -->
         <tr><td>生年月日</td><td>19○○年○月○日</td></tr>
         <tr><td>出身地</td><td>○○県○○市</td></tr>
         <tr><td>血液型</td><td>○型</td></tr>
@@ -598,6 +120,7 @@
         <tr><td>彼の好きなところ</td><td>○○なところ、○○なところ</td></tr>
       </table>
       <div class="message-quote">
+        <!-- ▼ 新婦メッセージを編集 -->
         <p>大切な皆さまにお会いできて、とても嬉しいです。<br>○○と出会えたこと、そして今日この日を迎えられたことに、心から感謝しています。これからもどうぞよろしくお願いいたします。</p>
       </div>
     </div>
@@ -613,19 +136,19 @@
       <div class="sec-ornament"><div class="sec-ornament-diamond"></div></div>
     </div>
 
-    <div class="talk-q"><span>Q. 出会いはどこで？</span></div>
+    <div class="talk-q"><span>Q. 出会いはどこで？</span></div><!-- ▼ 質問を変更 -->
     <div class="talk-row">
       <div class="talk-avt">🤵</div>
       <div class="talk-bwrap">
         <div class="talk-person">新郎</div>
-        <div class="talk-bubble">○○がきっかけで知り合いました。最初は普通の友達だったんですよ。</div>
+        <div class="talk-bubble">○○がきっかけで知り合いました。最初は普通の友達だったんですよ。</div><!-- ▼ 変更 -->
       </div>
     </div>
     <div class="talk-row right">
       <div class="talk-avt">👰</div>
       <div class="talk-bwrap">
         <div class="talk-person">新婦</div>
-        <div class="talk-bubble">そうそう！あのとき○○だったよね。まさかこうなるとは思ってなかった（笑）</div>
+        <div class="talk-bubble">そうそう！あのとき○○だったよね。まさかこうなるとは思ってなかった（笑）</div><!-- ▼ 変更 -->
       </div>
     </div>
 
@@ -681,7 +204,7 @@
 
 
   <!-- ===== §4 Today's Music ===== -->
-  <!-- ▼ EDIT: 曲名・アーティスト・href（SpotifyやYouTubeのURL）を変更 -->
+  <!-- ▼ EDIT: 曲名・アーティスト・href（Spotify/YouTubeのURL）を変更 -->
   <section id="music" class="section">
     <div class="sec-head">
       <div class="sec-title">Today's Music<span class="sec-title-en">Wedding Playlist</span></div>
@@ -689,12 +212,12 @@
     </div>
     <p class="music-intro">今日のために選んだ、大切な曲たちです。<br>ぜひ曲名をタップして聴いてみてください♪</p>
 
-    <a class="music-card" href="#" target="_blank" rel="noopener">
+    <a class="music-card" href="#" target="_blank" rel="noopener"><!-- ▼ href を変更 -->
       <div class="music-jacket">🎵</div>
       <div class="music-info">
         <div class="music-scene">入場</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
+        <div class="music-title">曲名を入力してください</div><!-- ▼ 変更 -->
+        <div class="music-artist">アーティスト名</div><!-- ▼ 変更 -->
       </div>
       <span class="music-link-icon">›</span>
     </a>
@@ -760,7 +283,7 @@
       <div class="photo-item wide">
         <!-- <img src="images/story1.jpg" alt="出会いのころ"> -->
         <div class="photo-ph"><span class="ph-i">🌸</span><span class="ph-c">出会いのころ</span></div>
-        <div class="photo-cap">出会いのころ</div>
+        <div class="photo-cap">出会いのころ</div><!-- ▼ キャプションを変更 -->
       </div>
       <div class="photo-item">
         <!-- <img src="images/story2.jpg" alt="初旅行"> -->
@@ -803,7 +326,7 @@
 
 
   <!-- ===== §6 ゲストへのメッセージ ===== -->
-  <!-- ▼ EDIT: JavaScript の MESSAGES にゲスト名とメッセージを追加 -->
+  <!-- ▼ EDIT: script.js の MESSAGES にゲスト名とメッセージを追加 -->
   <section id="message" class="section">
     <div class="sec-head">
       <div class="sec-title">メッセージ<span class="sec-title-en">Message for you</span></div>
@@ -880,109 +403,11 @@
 
 <footer class="site-footer">
   <div class="kamon">✿</div>
-  新郎の名前 &amp; 新婦の名前<br>
-  2025年○月○日
+  新郎の名前 &amp; 新婦の名前<br><!-- ▼ 変更 -->
+  2025年○月○日<!-- ▼ 変更 -->
 </footer>
 
-
-<script>
-  /* タブ切り替え */
-  function showTab(id, btn) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  /* プロフィール切り替え */
-  function showProfile(who, btn) {
-    document.querySelectorAll('.profile-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.ptoggle-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('prof-' + who).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  /* ============================================================
-     ゲストへのメッセージ
-     ============================================================
-     ▼▼▼ ここにゲスト名とメッセージを追加してください ▼▼▼
-
-     書き方：
-       "名前": {
-         message: "本文（\n で改行）",
-         from: "署名（例：新郎より / 新婦より / 2人より）"
-       },
-
-     名前は「姓 名」「姓名」どちらでもOK。
-     ============================================================ */
-  const MESSAGES = {
-
-    "田中 太郎": {
-      message: "太郎くんへ\n\n学生時代からずっと支えてくれてありがとう。\nあなたがいたから今日を迎えられたと思っています。\nこれからも家族ぐるみで仲良くしてね！",
-      from: "新郎・新婦より"
-    },
-    "山田 花子": {
-      message: "花子ちゃんへ\n\nいつも明るく笑顔でいてくれる花子ちゃんが大好きです。\n今日来てくれてありがとう。\nこれからもよろしくね♡",
-      from: "新婦より"
-    },
-    "鈴木 一郎": {
-      message: "一郎さんへ\n\n長い間お世話になりありがとうございます。\nこれからも変わらぬお付き合いをよろしくお願いいたします。",
-      from: "新郎より"
-    },
-
-    /* ▼ 続きはここに追加
-    "佐藤 次郎": {
-      message: "次郎さんへ\n\nメッセージ文",
-      from: "○○より"
-    },
-    */
-  };
-
-  /* 検索実行 */
-  function searchMessage() {
-    const raw      = document.getElementById('msgInput').value.trim();
-    const result   = document.getElementById('msgResult');
-    const notfound = document.getElementById('msgNotFound');
-
-    result.classList.remove('show');
-    notfound.classList.remove('show');
-    if (!raw) return;
-
-    const normalize = s => s.replace(/[\s　]+/g, ' ');
-    const query = normalize(raw);
-
-    let found = null, foundName = null;
-    for (const [name, data] of Object.entries(MESSAGES)) {
-      if (normalize(name) === query) { found = data; foundName = name; break; }
-    }
-    if (!found) {
-      for (const [name, data] of Object.entries(MESSAGES)) {
-        if (normalize(name).startsWith(query)) { found = data; foundName = name; break; }
-      }
-    }
-    if (!found) {
-      for (const [name, data] of Object.entries(MESSAGES)) {
-        if (normalize(name).includes(query)) { found = data; foundName = name; break; }
-      }
-    }
-
-    if (found) {
-      document.getElementById('msgResultName').textContent = foundName + ' 様';
-      document.getElementById('msgResultBody').innerHTML   = found.message.replace(/\n/g, '<br>');
-      document.getElementById('msgResultSign').textContent = found.from;
-      result.classList.add('show');
-      setTimeout(() => result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-    } else {
-      notfound.classList.add('show');
-    }
-  }
-
-  document.getElementById('msgInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') searchMessage();
-  });
-</script>
-
+<script src="messages.js"></script><!-- ゲストメッセージデータ -->
+<script src="script.js"></script><!-- タブ・検索ロジック -->
 </body>
 </html>
