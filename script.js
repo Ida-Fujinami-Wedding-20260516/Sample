@@ -3,19 +3,60 @@
    ===================================================== */
 
 /* -----------------------------------------------------
+   公開時刻制限の設定
+   ▼ 公開したい日時を変更する場合はここを編集
+   ----------------------------------------------------- */
+const UNLOCK_TIME = new Date('2026-05-06T14:00:00+09:00'); // 2026年5月6日 14:00（日本時間）
+
+/* 公開時刻制限があるタブID */
+const LOCKED_TABS = ['links'];
+
+/* -----------------------------------------------------
    タブ切り替え
    ----------------------------------------------------- */
 function showTab(id, btn) {
+  // 時刻制限チェック
+  if (LOCKED_TABS.includes(id) && new Date() < UNLOCK_TIME) {
+    showLockedMessage();
+    return;
+  }
+
+  // 通常の切り替え処理
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
-  // アクティブなタブを中央にスクロール
   btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  // ページトップへ
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ロック中メッセージを表示 */
+function showLockedMessage() {
+  const modal = document.getElementById('lockedModal');
+  if (modal) {
+    // 公開までの残り時間を計算
+    const now = new Date();
+    const diff = UNLOCK_TIME - now;
+    const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    let timeText = '';
+    if (days > 0)         timeText = `あと ${days} 日 ${hours} 時間`;
+    else if (hours > 0)   timeText = `あと ${hours} 時間 ${minutes} 分`;
+    else                  timeText = `あと ${minutes} 分`;
+
+    document.getElementById('lockedCountdown').textContent = timeText;
+    modal.classList.add('show');
+  }
+}
+
+/* モーダルを閉じる */
+function closeLockedModal() {
+  const modal = document.getElementById('lockedModal');
+  if (modal) modal.classList.remove('show');
 }
 
 /* -----------------------------------------------------

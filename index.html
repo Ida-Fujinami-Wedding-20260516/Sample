@@ -317,41 +317,69 @@
 
   <!-- ===== §7 各種リンク ===== -->
   <!-- ▼ EDIT: href="#" を実際のURLに変更 -->
+  <!-- ===== §7 Today's Music ===== -->
+  <!-- ▼ EDIT: 曲名・アーティスト・href（Spotify/YouTubeのURL）を変更 -->
   <section id="links" class="section">
     <div class="sec-head">
       <div class="sec-title">Today's Music<span class="sec-title-en">Wedding Playlist</span></div>
       <div class="sec-ornament"><div class="sec-ornament-diamond"></div></div>
     </div>
+    <p class="music-intro">今日のために選んだ、大切な曲たちです。<br>ぜひ曲名をタップして聴いてみてください♪</p>
 
-    <a class="link-card" href="#" target="_blank" rel="noopener">
-      <div class="link-icon-wrap">🗺️</div>
-      <div class="link-text"><div class="link-title">会場へのアクセス</div><div class="link-desc">Google マップで確認する</div></div>
-      <span class="link-arrow">›</span>
+    <!-- ▼ href をSpotify/YouTubeのURLに変更、曲名・アーティストも編集 -->
+    <a class="music-card" href="#" target="_blank" rel="noopener">
+      <div class="music-jacket">🎵</div>
+      <div class="music-info">
+        <div class="music-scene">入場</div>
+        <div class="music-title">曲名を入力してください</div>
+        <div class="music-artist">アーティスト名</div>
+      </div>
+      <span class="music-link-icon">›</span>
     </a>
-    <a class="link-card" href="#" target="_blank" rel="noopener">
-      <div class="link-icon-wrap">📋</div>
-      <div class="link-text"><div class="link-title">ウィッシュリスト</div><div class="link-desc">贈り物のご参考にどうぞ</div></div>
-      <span class="link-arrow">›</span>
+    <a class="music-card" href="#" target="_blank" rel="noopener">
+      <div class="music-jacket">🥂</div>
+      <div class="music-info">
+        <div class="music-scene">乾杯</div>
+        <div class="music-title">曲名を入力してください</div>
+        <div class="music-artist">アーティスト名</div>
+      </div>
+      <span class="music-link-icon">›</span>
     </a>
-    <a class="link-card" href="#" target="_blank" rel="noopener">
-      <div class="link-icon-wrap">📸</div>
-      <div class="link-text"><div class="link-title">フォトアルバム共有</div><div class="link-desc">お写真をみんなでシェアしよう</div></div>
-      <span class="link-arrow">›</span>
+    <a class="music-card" href="#" target="_blank" rel="noopener">
+      <div class="music-jacket">🎂</div>
+      <div class="music-info">
+        <div class="music-scene">ケーキカット</div>
+        <div class="music-title">曲名を入力してください</div>
+        <div class="music-artist">アーティスト名</div>
+      </div>
+      <span class="music-link-icon">›</span>
     </a>
-    <a class="link-card" href="#" target="_blank" rel="noopener">
-      <div class="link-icon-wrap">🎁</div>
-      <div class="link-text"><div class="link-title">ご祝儀・プレゼント</div><div class="link-desc">オンラインでのお祝いはこちら</div></div>
-      <span class="link-arrow">›</span>
+    <a class="music-card" href="#" target="_blank" rel="noopener">
+      <div class="music-jacket">🕯️</div>
+      <div class="music-info">
+        <div class="music-scene">キャンドルサービス</div>
+        <div class="music-title">曲名を入力してください</div>
+        <div class="music-artist">アーティスト名</div>
+      </div>
+      <span class="music-link-icon">›</span>
     </a>
-    <a class="link-card" href="#" target="_blank" rel="noopener">
-      <div class="link-icon-wrap">📱</div>
-      <div class="link-text"><div class="link-title">Instagram</div><div class="link-desc">2人のアカウントはこちら</div></div>
-      <span class="link-arrow">›</span>
+    <a class="music-card" href="#" target="_blank" rel="noopener">
+      <div class="music-jacket">💌</div>
+      <div class="music-info">
+        <div class="music-scene">手紙の朗読</div>
+        <div class="music-title">曲名を入力してください</div>
+        <div class="music-artist">アーティスト名</div>
+      </div>
+      <span class="music-link-icon">›</span>
     </a>
-    <a class="link-card" href="#" target="_blank" rel="noopener">
-      <div class="link-icon-wrap">📝</div>
-      <div class="link-text"><div class="link-title">アンケート</div><div class="link-desc">ひとことメッセージをお寄せください</div></div>
-      <span class="link-arrow">›</span>
+    <a class="music-card" href="#" target="_blank" rel="noopener">
+      <div class="music-jacket">🌅</div>
+      <div class="music-info">
+        <div class="music-scene">退場</div>
+        <div class="music-title">曲名を入力してください</div>
+        <div class="music-artist">アーティスト名</div>
+      </div>
+      <span class="music-link-icon">›</span>
     </a>
 
   </section>
@@ -363,6 +391,17 @@
   新郎の名前 &amp; 新婦の名前<br><!-- ▼ 変更 -->
   2025年○月○日<!-- ▼ 変更 -->
 </footer>
+
+<!-- 時刻制限モーダル -->
+<div class="locked-modal" id="lockedModal" onclick="closeLockedModal()">
+  <div class="locked-modal-box" onclick="event.stopPropagation()">
+    <div class="locked-icon">🔒</div>
+    <div class="locked-title">まだ公開前です</div>
+    <div class="locked-desc">このページは挙式当日の<br>14:00 以降に公開されます</div>
+    <div class="locked-countdown" id="lockedCountdown"></div>
+    <button class="locked-close" onclick="closeLockedModal()">閉じる</button>
+  </div>
+</div>
 
 <script src="messages.js"></script><!-- ゲストメッセージデータ -->
 <script src="script.js"></script><!-- タブ・検索ロジック -->
