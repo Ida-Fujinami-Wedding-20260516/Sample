@@ -71,10 +71,10 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 8px 7px 6px;
+  padding: 8px 11px 6px;
   font-family: 'Noto Serif JP', serif;
   font-size: 9px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   color: var(--gray);
   background: none;
   border: none;
