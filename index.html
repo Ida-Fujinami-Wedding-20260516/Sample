@@ -17,7 +17,7 @@
     <button class="tab-btn active" onclick="showTab('greeting',this)"><span class="ti">🌸</span><span>ご挨拶</span></button>
     <button class="tab-btn" onclick="showTab('profile',this)"><span class="ti">👤</span><span>プロフィール</span></button>
     <button class="tab-btn" onclick="showTab('talk',this)"><span class="ti">💬</span><span>対談</span></button>
-    <button class="tab-btn" onclick="showTab('music',this)"><span class="ti">🎵</span><span>Music</span></button>
+    <button class="tab-btn" onclick="showTab('music',this)"><span class="ti">🔍</span><span>謎解き</span></button>
     <button class="tab-btn" onclick="showTab('photos',this)"><span class="ti">📷</span><span>写真集</span></button>
     <button class="tab-btn" onclick="showTab('message',this)"><span class="ti">💌</span><span>メッセージ</span></button>
     <button class="tab-btn" onclick="showTab('links',this)"><span class="ti">🔗</span><span>リンク</span></button>
@@ -203,69 +203,20 @@
   </section>
 
 
-  <!-- ===== §4 Today's Music ===== -->
-  <!-- ▼ EDIT: 曲名・アーティスト・href（Spotify/YouTubeのURL）を変更 -->
+  <!-- ===== §4 謎解き ===== -->
+  <!-- ▼ EDIT: 謎解きのコンテンツをここに追加してください -->
   <section id="music" class="section">
     <div class="sec-head">
-      <div class="sec-title">Today's Music<span class="sec-title-en">Wedding Playlist</span></div>
+      <div class="sec-title">謎解き<span class="sec-title-en">Mystery</span></div>
       <div class="sec-ornament"><div class="sec-ornament-diamond"></div></div>
     </div>
-    <p class="music-intro">今日のために選んだ、大切な曲たちです。<br>ぜひ曲名をタップして聴いてみてください♪</p>
 
-    <a class="music-card" href="#" target="_blank" rel="noopener"><!-- ▼ href を変更 -->
-      <div class="music-jacket">🎵</div>
-      <div class="music-info">
-        <div class="music-scene">入場</div>
-        <div class="music-title">曲名を入力してください</div><!-- ▼ 変更 -->
-        <div class="music-artist">アーティスト名</div><!-- ▼ 変更 -->
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🥂</div>
-      <div class="music-info">
-        <div class="music-scene">乾杯</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🎂</div>
-      <div class="music-info">
-        <div class="music-scene">ケーキカット</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🕯️</div>
-      <div class="music-info">
-        <div class="music-scene">キャンドルサービス</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">💌</div>
-      <div class="music-info">
-        <div class="music-scene">手紙の朗読</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
-    <a class="music-card" href="#" target="_blank" rel="noopener">
-      <div class="music-jacket">🌅</div>
-      <div class="music-info">
-        <div class="music-scene">退場</div>
-        <div class="music-title">曲名を入力してください</div>
-        <div class="music-artist">アーティスト名</div>
-      </div>
-      <span class="music-link-icon">›</span>
-    </a>
+    <!-- 謎解きのコンテンツは後で追加 -->
+    <div style="text-align:center; padding: 60px 20px; color: var(--gray);">
+      <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+      <p style="font-family: 'Noto Serif JP', serif; font-size: 16px; letter-spacing: 0.15em; margin-bottom: 8px;">謎解き準備中</p>
+      <p style="font-size: 13px; line-height: 1.85;">もうしばらくお待ちください…</p>
+    </div>
 
   </section>
 
@@ -279,46 +230,108 @@
     </div>
     <p class="photo-intro">2人のこれまでの思い出を集めました。<br>一枚一枚、大切な記憶です。</p>
 
-    <div class="photo-grid">
-      <div class="photo-item wide">
-        <!-- <img src="images/story1.jpg" alt="出会いのころ"> -->
-        <div class="photo-ph"><span class="ph-i">🌸</span><span class="ph-c">出会いのころ</span></div>
-        <div class="photo-cap">出会いのころ</div><!-- ▼ キャプションを変更 -->
+    <!-- セクション切り替えボタン -->
+    <div class="photo-toggle">
+      <button class="ptoggle-photo active" onclick="showPhotoSection('couple', this)">🌿 二人の写真</button>
+      <button class="ptoggle-photo" onclick="showPhotoSection('groom', this)">🤵 新郎</button>
+      <button class="ptoggle-photo" onclick="showPhotoSection('bride', this)">👰 新婦</button>
+    </div>
+
+    <!-- 二人の写真 -->
+    <div id="photos-couple" class="photo-panel active">
+      <div class="photo-grid">
+        <div class="photo-item wide">
+          <!-- <img src="images/couple1.jpg" alt="出会いのころ"> -->
+          <div class="photo-ph"><span class="ph-i">🌸</span><span class="ph-c">出会いのころ</span></div>
+          <div class="photo-cap">出会いのころ</div><!-- ▼ キャプションを変更 -->
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/couple2.jpg" alt="初旅行"> -->
+          <div class="photo-ph"><span class="ph-i">🏖️</span><span class="ph-c">初旅行</span></div>
+          <div class="photo-cap">初旅行</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/couple3.jpg" alt="花火大会"> -->
+          <div class="photo-ph"><span class="ph-i">🎆</span><span class="ph-c">花火大会</span></div>
+          <div class="photo-cap">花火大会</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/couple4.jpg" alt="プロポーズ"> -->
+          <div class="photo-ph"><span class="ph-i">💍</span><span class="ph-c">プロポーズ</span></div>
+          <div class="photo-cap">プロポーズ</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/couple5.jpg" alt="入籍日"> -->
+          <div class="photo-ph"><span class="ph-i">✨</span><span class="ph-c">入籍日</span></div>
+          <div class="photo-cap">入籍日</div>
+        </div>
+        <div class="photo-item wide">
+          <!-- <img src="images/couple6.jpg" alt="前撮り"> -->
+          <div class="photo-ph"><span class="ph-i">👗</span><span class="ph-c">前撮り</span></div>
+          <div class="photo-cap">前撮り</div>
+        </div>
       </div>
-      <div class="photo-item">
-        <!-- <img src="images/story2.jpg" alt="初旅行"> -->
-        <div class="photo-ph"><span class="ph-i">🏖️</span><span class="ph-c">初旅行</span></div>
-        <div class="photo-cap">初旅行</div>
+    </div>
+
+    <!-- 新郎の写真 -->
+    <div id="photos-groom" class="photo-panel">
+      <div class="photo-grid">
+        <div class="photo-item wide">
+          <!-- <img src="images/groom1.jpg" alt="新郎の写真1"> -->
+          <div class="photo-ph"><span class="ph-i">🌿</span><span class="ph-c">子どものころ</span></div>
+          <div class="photo-cap">子どものころ</div><!-- ▼ キャプションを変更 -->
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/groom2.jpg" alt="新郎の写真2"> -->
+          <div class="photo-ph"><span class="ph-i">⚽</span><span class="ph-c">趣味・スポーツ</span></div>
+          <div class="photo-cap">趣味・スポーツ</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/groom3.jpg" alt="新郎の写真3"> -->
+          <div class="photo-ph"><span class="ph-i">🎓</span><span class="ph-c">学生時代</span></div>
+          <div class="photo-cap">学生時代</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/groom4.jpg" alt="新郎の写真4"> -->
+          <div class="photo-ph"><span class="ph-i">🏔️</span><span class="ph-c">旅の思い出</span></div>
+          <div class="photo-cap">旅の思い出</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/groom5.jpg" alt="新郎の写真5"> -->
+          <div class="photo-ph"><span class="ph-i">😊</span><span class="ph-c">最近の一枚</span></div>
+          <div class="photo-cap">最近の一枚</div>
+        </div>
       </div>
-      <div class="photo-item">
-        <!-- <img src="images/story3.jpg" alt="花火大会"> -->
-        <div class="photo-ph"><span class="ph-i">🎆</span><span class="ph-c">花火大会</span></div>
-        <div class="photo-cap">花火大会</div>
-      </div>
-      <div class="photo-item">
-        <!-- <img src="images/story4.jpg" alt="紅葉狩り"> -->
-        <div class="photo-ph"><span class="ph-i">🍂</span><span class="ph-c">紅葉狩り</span></div>
-        <div class="photo-cap">紅葉狩り</div>
-      </div>
-      <div class="photo-item">
-        <!-- <img src="images/story5.jpg" alt="プロポーズ"> -->
-        <div class="photo-ph"><span class="ph-i">💍</span><span class="ph-c">プロポーズ</span></div>
-        <div class="photo-cap">プロポーズ</div>
-      </div>
-      <div class="photo-item wide">
-        <!-- <img src="images/story6.jpg" alt="前撮り"> -->
-        <div class="photo-ph"><span class="ph-i">👗</span><span class="ph-c">前撮り</span></div>
-        <div class="photo-cap">前撮り</div>
-      </div>
-      <div class="photo-item">
-        <!-- <img src="images/story7.jpg" alt="式場見学"> -->
-        <div class="photo-ph"><span class="ph-i">🌺</span><span class="ph-c">式場見学</span></div>
-        <div class="photo-cap">式場見学</div>
-      </div>
-      <div class="photo-item">
-        <!-- <img src="images/story8.jpg" alt="入籍日"> -->
-        <div class="photo-ph"><span class="ph-i">✨</span><span class="ph-c">入籍日</span></div>
-        <div class="photo-cap">入籍日</div>
+    </div>
+
+    <!-- 新婦の写真 -->
+    <div id="photos-bride" class="photo-panel">
+      <div class="photo-grid">
+        <div class="photo-item wide">
+          <!-- <img src="images/bride1.jpg" alt="新婦の写真1"> -->
+          <div class="photo-ph"><span class="ph-i">🌸</span><span class="ph-c">子どものころ</span></div>
+          <div class="photo-cap">子どものころ</div><!-- ▼ キャプションを変更 -->
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/bride2.jpg" alt="新婦の写真2"> -->
+          <div class="photo-ph"><span class="ph-i">🎨</span><span class="ph-c">趣味・習い事</span></div>
+          <div class="photo-cap">趣味・習い事</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/bride3.jpg" alt="新婦の写真3"> -->
+          <div class="photo-ph"><span class="ph-i">🎓</span><span class="ph-c">学生時代</span></div>
+          <div class="photo-cap">学生時代</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/bride4.jpg" alt="新婦の写真4"> -->
+          <div class="photo-ph"><span class="ph-i">🌺</span><span class="ph-c">旅の思い出</span></div>
+          <div class="photo-cap">旅の思い出</div>
+        </div>
+        <div class="photo-item">
+          <!-- <img src="images/bride5.jpg" alt="新婦の写真5"> -->
+          <div class="photo-ph"><span class="ph-i">😊</span><span class="ph-c">最近の一枚</span></div>
+          <div class="photo-cap">最近の一枚</div>
+        </div>
       </div>
     </div>
 

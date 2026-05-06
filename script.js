@@ -29,6 +29,16 @@ function showProfile(who, btn) {
 }
 
 /* -----------------------------------------------------
+   写真集セクション切り替え（二人の写真 / 新郎 / 新婦）
+   ----------------------------------------------------- */
+function showPhotoSection(who, btn) {
+  document.querySelectorAll('.photo-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ptoggle-photo').forEach(b => b.classList.remove('active'));
+  document.getElementById('photos-' + who).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* -----------------------------------------------------
    メッセージ検索実行
    ※ ゲスト名・メッセージの追加は messages.js で行う
    ----------------------------------------------------- */

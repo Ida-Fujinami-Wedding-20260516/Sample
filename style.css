@@ -70,11 +70,11 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  padding: 8px 14px 6px;
+  gap: 2px;
+  padding: 8px 10px 6px;
   font-family: 'Noto Serif JP', serif;
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  font-size: 9px;
+  letter-spacing: 0.04em;
   color: var(--gray);
   background: none;
   border: none;
@@ -84,7 +84,7 @@ body::before {
   transition: color 0.25s;
   -webkit-tap-highlight-color: transparent;
 }
-.tab-btn .ti { font-size: 19px; line-height: 1; }
+.tab-btn .ti { font-size: 17px; line-height: 1; }
 .tab-btn.active { color: var(--brown); font-weight: 500; }
 .tab-btn.active::after {
   content: '';
@@ -383,6 +383,30 @@ body::before {
    §5 写真集
    ========================================= */
 .photo-intro { font-size: 13px; text-align: center; color: var(--gray); line-height: 1.85; margin-bottom: 20px; }
+
+/* 写真セクション切り替えボタン */
+.photo-toggle {
+  display: flex;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.ptoggle-photo {
+  flex: 1; padding: 11px 4px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px; letter-spacing: 0.06em;
+  border: none; background: none;
+  cursor: pointer; color: var(--gray);
+  transition: all 0.25s;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+.ptoggle-photo.active { background: var(--brown); color: var(--white); }
+
+.photo-panel { display: none; }
+.photo-panel.active { display: block; animation: fadeUp 0.3s ease both; }
 
 .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .photo-item { position: relative; border-radius: 5px; overflow: hidden; }
