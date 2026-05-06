@@ -587,67 +587,29 @@ body::before {
 .link-arrow { color: var(--border); font-size: 17px; flex-shrink: 0; }
 
 /* =========================================
-   時刻制限モーダル
+   Today's Music — 公開前メッセージ
    ========================================= */
-.locked-modal {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(28,56,32,0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 500;
-  align-items: center; justify-content: center;
-  padding: 24px;
-}
-.locked-modal.show {
-  display: flex;
-  animation: fadeUp 0.25s ease both;
-}
-.locked-modal-box {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 36px 28px 28px;
+.music-locked {
   text-align: center;
-  width: 100%; max-width: 320px;
-  position: relative;
+  padding: 56px 20px 48px;
+  animation: fadeUp 0.3s ease both;
 }
-.locked-modal-box::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
-  border-radius: 16px 16px 0 0;
-}
-.locked-icon { font-size: 40px; margin-bottom: 14px; }
-.locked-title {
+.music-locked-icon { font-size: 44px; margin-bottom: 16px; }
+.music-locked-title {
   font-family: 'Noto Serif JP', serif;
   font-size: 18px; font-weight: 500;
   letter-spacing: 0.15em; color: var(--brown);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
-.locked-desc {
+.music-locked-desc {
   font-size: 13px; line-height: 1.9;
-  color: var(--gray); margin-bottom: 18px;
+  color: var(--gray); margin-bottom: 16px;
 }
-.locked-countdown {
+.music-locked-countdown {
   font-family: 'Noto Serif JP', serif;
   font-size: 15px; font-weight: 500;
   color: var(--gold); letter-spacing: 0.1em;
-  margin-bottom: 24px; min-height: 1.5em;
 }
-.locked-close {
-  display: block; width: 100%;
-  padding: 13px;
-  background: var(--brown); color: var(--white);
-  border: none; border-radius: 8px;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 14px; letter-spacing: 0.08em;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-.locked-close:active { background: var(--gold-mid); }
 
 /* =========================================
    フッター

@@ -51,51 +51,49 @@ function renderPlaylist() {
    タブ切り替え
    ----------------------------------------------------- */
 function showTab(id, btn) {
-  // 時刻制限チェック
-  if (LOCKED_TABS.includes(id) && new Date() < UNLOCK_TIME) {
-    showLockedMessage();
-    return;
-  }
-
-  // 通常の切り替え処理
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-
-  // Today's Music タブなら曲カードを描画
-  if (id === 'links') renderPlaylist();
 
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
   btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-/* ロック中メッセージを表示 */
-function showLockedMessage() {
-  const modal = document.getElementById('lockedModal');
-  if (modal) {
-    // 公開までの残り時間を計算
-    const now = new Date();
-    const diff = UNLOCK_TIME - now;
-    const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-    let timeText = '';
-    if (days > 0)         timeText = `あと ${days} 日 ${hours} 時間`;
-    else if (hours > 0)   timeText = `あと ${hours} 時間 ${minutes} 分`;
-    else                  timeText = `あと ${minutes} 分`;
-
-    document.getElementById('lockedCountdown').textContent = timeText;
-    modal.classList.add('show');
+  // Today's Music タブ：時刻に応じて内容を切り替え
+  if (id === 'links') {
+    if (new Date() < UNLOCK_TIME) {
+      renderLockedMessage();
+    } else {
+      renderPlaylist();
+    }
   }
 }
 
-/* モーダルを閉じる */
-function closeLockedModal() {
-  const modal = document.getElementById('lockedModal');
-  if (modal) modal.classList.remove('show');
+/* 公開前メッセージを描画 */
+function renderLockedMessage() {
+  const container = document.getElementById('musicList');
+  if (!container) return;
+
+  const now  = new Date();
+  const diff = UNLOCK_TIME - now;
+  const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+  let timeText = '';
+  if (days > 0)       timeText = `あと ${days} 日 ${hours} 時間`;
+  else if (hours > 0) timeText = `あと ${hours} 時間 ${minutes} 分`;
+  else                timeText = `あと ${minutes} 分`;
+
+  container.innerHTML = `
+    <div class="music-locked">
+      <div class="music-locked-icon">🔒</div>
+      <div class="music-locked-title">まだ公開前です</div>
+      <div class="music-locked-desc">挙式当日の 14:00 以降に公開されます</div>
+      <div class="music-locked-countdown">${timeText}</div>
+    </div>
+  `;
 }
 
 /* -----------------------------------------------------
