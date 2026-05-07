@@ -6,7 +6,7 @@
   <title>Wedding Profile Book</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,29 +31,46 @@
   <section id="greeting" class="section active">
 
     <div class="hero-img-wrap">
-      <!-- 写真を使う場合：下の div を削除し <img src="images/main.jpg" alt="2人の写真"> を追加 -->
+      <img src="photo1.jpg" alt="2人の写真">
+      <!-- 
       <div class="hero-placeholder">
         <span class="ph-icon">📷</span>
         <span class="ph-text">2人のお写真をここに</span>
       </div>
+      -->
     </div>
 
     <div class="couple-block">
-      <div class="couple-names">新郎の名前<span class="couple-amp">&amp;</span>新婦の名前</div><!-- ▼ 変更 -->
-      <div class="wedding-date">2025年○月○日（○）</div><!-- ▼ 変更 -->
-      <div class="wedding-venue">○○ホテル ○○の間</div><!-- ▼ 変更 -->
+      <div class="couple-names">井田 啓介<span class="couple-amp">&amp;</span>藤浪 佑衣</div><!-- 名前 -->
+      <div class="wedding-date">2026年5月16日（土）</div>
+      <div class="wedding-venue">THE KAWABUN NAGOYA</div>
     </div>
 
     <div class="divider"><span>✦</span></div>
 
     <!-- ▼ ご挨拶文を編集 -->
     <p class="greeting-text">
+      本日はご多用の中 <br>
+      わたしたちのウエディングパーティに<br>
+      お越しいただきありがとうございます<br><br>
+      日頃お世話になっております皆さまと<br>
+      今日という特別な日をむかえられることを<br>
+      とても嬉しく思います<br><br>
+      今日は思いっきり楽しんでください！<br>
+      みなさまとたくさんお話できることを<br>
+      心から楽しみにしています
+    </p>
+    <p class="greeting-sign">井田 啓介 ・ 藤浪 佑衣</p><!-- 名前 -->
+
+    <!-- Cloude作成の元の文
+    <p class="greeting-text">
       本日はご多用の中、私たちの結婚式にお越しくださり、誠にありがとうございます。<br><br>
       皆さまにお会いできることを、二人してとても楽しみにしておりました。<br><br>
       このプロフィールブックは、私たちのことをもっと知っていただけたらという思いでご用意しました。どうぞお気軽にご覧ください。<br><br>
       今日という特別な日を、大切な皆さまとともに過ごせることが、この上ない幸せです。どうぞ最後まで楽しんでいただけますように。
     </p>
-    <p class="greeting-sign">新郎の名前 ・ 新婦の名前</p><!-- ▼ 変更 -->
+    <p class="greeting-sign">新郎の名前 ・ 新婦の名前</p>  
+    -->
 
   </section>
 
@@ -75,26 +92,26 @@
     <div id="prof-groom" class="profile-panel active">
       <div class="profile-avatar-wrap">
         <div class="profile-avatar">
-          <!-- 写真：<img src="images/groom.jpg" alt="新郎"> に差し替え -->
-          🤵
+          <img src="GroomPhoto.jpg" alt="新郎">
         </div>
       </div>
-      <div class="profile-name">新郎の名前</div><!-- ▼ 変更 -->
+      <div class="profile-name">井田 啓介</div><!-- ▼ 変更 -->
       <div class="profile-role">Groom</div>
       <table class="profile-table">
         <!-- ▼ 各行の右側を編集 -->
-        <tr><td>生年月日</td><td>19○○年○月○日</td></tr>
-        <tr><td>出身地</td><td>○○県○○市</td></tr>
-        <tr><td>血液型</td><td>○型</td></tr>
-        <tr><td>職業</td><td>○○関係</td></tr>
-        <tr><td>趣味</td><td>○○、○○</td></tr>
-        <tr><td>好きな食べ物</td><td>○○、○○</td></tr>
+        <tr><td>生年月日</td><td>1997年7月30日</td></tr>
+        <tr><td>出身地</td><td>愛知県刈谷市</td></tr>
+        <tr><td>血液型</td><td>O型</td></tr>
+        <tr><td>職業</td><td>IT関係</td></tr>
+        <tr><td>趣味</td><td>楽器、読書</td></tr>
+        <tr><td>好きな食べ物</td><td>ラーメン、○○</td></tr>
         <tr><td>好きな言葉</td><td>「○○」</td></tr>
         <tr><td>彼女の好きなところ</td><td>○○なところ、○○なところ</td></tr>
       </table>
       <div class="message-quote">
         <!-- ▼ 新郎メッセージを編集 -->
-        <p>今日この日、皆さまへ感謝の気持ちをお伝えしたいと思います。<br>これからも○○と二人で支え合い、笑顔あふれる家庭を築いていきたいと思います。どうぞよろしくお願いいたします。</p>
+        <p>今日この日、皆さまへ感謝の気持ちをお伝えしたいと思います。<br>
+          これからも○○と二人で支え合い、笑顔あふれる家庭を築いていきたいと思います。どうぞよろしくお願いいたします。</p>
       </div>
     </div>
 
@@ -102,18 +119,17 @@
     <div id="prof-bride" class="profile-panel">
       <div class="profile-avatar-wrap">
         <div class="profile-avatar">
-          <!-- 写真：<img src="images/bride.jpg" alt="新婦"> に差し替え -->
-          👰
+          <img src="BridePhoto.jpg" alt="新婦">
         </div>
       </div>
-      <div class="profile-name">新婦の名前</div><!-- ▼ 変更 -->
+      <div class="profile-name">藤浪 佑衣</div><!-- ▼ 変更 -->
       <div class="profile-role">Bride</div>
       <table class="profile-table">
         <!-- ▼ 各行の右側を編集 -->
-        <tr><td>生年月日</td><td>19○○年○月○日</td></tr>
-        <tr><td>出身地</td><td>○○県○○市</td></tr>
-        <tr><td>血液型</td><td>○型</td></tr>
-        <tr><td>職業</td><td>○○関係</td></tr>
+        <tr><td>生年月日</td><td>1999年6月15日</td></tr>
+        <tr><td>出身地</td><td>三重県伊勢市</td></tr>
+        <tr><td>血液型</td><td>O型</td></tr>
+        <tr><td>職業</td><td>化粧品関係</td></tr>
         <tr><td>趣味</td><td>○○、○○</td></tr>
         <tr><td>好きな食べ物</td><td>○○、○○</td></tr>
         <tr><td>好きな言葉</td><td>「○○」</td></tr>
@@ -121,7 +137,8 @@
       </table>
       <div class="message-quote">
         <!-- ▼ 新婦メッセージを編集 -->
-        <p>大切な皆さまにお会いできて、とても嬉しいです。<br>○○と出会えたこと、そして今日この日を迎えられたことに、心から感謝しています。これからもどうぞよろしくお願いいたします。</p>
+        <p>大切な皆さまにお会いできて、とても嬉しいです。<br>
+          ○○と出会えたこと、そして今日この日を迎えられたことに、心から感謝しています。これからもどうぞよろしくお願いいたします。</p>
       </div>
     </div>
 
@@ -138,14 +155,14 @@
 
     <div class="talk-q"><span>Q. 出会いはどこで？</span></div><!-- ▼ 質問を変更 -->
     <div class="talk-row">
-      <div class="talk-avt">🤵</div>
+      <div class="talk-avt"><img src="GroomPhoto.jpg" alt="新郎"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新郎</div>
         <div class="talk-bubble">○○がきっかけで知り合いました。最初は普通の友達だったんですよ。</div><!-- ▼ 変更 -->
       </div>
     </div>
     <div class="talk-row right">
-      <div class="talk-avt">👰</div>
+      <div class="talk-avt"><img src="BridePhoto.jpg" alt="新婦"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新婦</div>
         <div class="talk-bubble">そうそう！あのとき○○だったよね。まさかこうなるとは思ってなかった（笑）</div><!-- ▼ 変更 -->
@@ -154,14 +171,14 @@
 
     <div class="talk-q"><span>Q. 第一印象は？</span></div>
     <div class="talk-row">
-      <div class="talk-avt">🤵</div>
+      <div class="talk-avt"><img src="GroomPhoto.jpg" alt="新郎"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新郎</div>
         <div class="talk-bubble">明るくてよく笑う人だなと思いました。話しやすそうで、すぐ仲良くなれそうだった。</div>
       </div>
     </div>
     <div class="talk-row right">
-      <div class="talk-avt">👰</div>
+      <div class="talk-avt"><img src="BridePhoto.jpg" alt="新婦"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新婦</div>
         <div class="talk-bubble">私は最初ちょっと怖そうだと思ってたんだけど（笑）、話してみたら全然そんなことなかった！</div>
@@ -170,14 +187,14 @@
 
     <div class="talk-q"><span>Q. プロポーズのエピソードは？</span></div>
     <div class="talk-row">
-      <div class="talk-avt">🤵</div>
+      <div class="talk-avt"><img src="GroomPhoto.jpg" alt="新郎"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新郎</div>
         <div class="talk-bubble">○○で、夕日をバックに「一生そばにいさせてください」と伝えました。</div>
       </div>
     </div>
     <div class="talk-row right">
-      <div class="talk-avt">👰</div>
+      <div class="talk-avt"><img src="BridePhoto.jpg" alt="新婦"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新婦</div>
         <div class="talk-bubble">サプライズで本当にびっくりしたし、うれしくて泣いちゃいました…♡</div>
@@ -186,14 +203,14 @@
 
     <div class="talk-q"><span>Q. 結婚後の夢・目標は？</span></div>
     <div class="talk-row">
-      <div class="talk-avt">🤵</div>
+      <div class="talk-avt"><img src="GroomPhoto.jpg" alt="新郎"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新郎</div>
         <div class="talk-bubble">家族みんなで旅行できるような、笑顔の絶えない家庭にしたいです。</div>
       </div>
     </div>
     <div class="talk-row right">
-      <div class="talk-avt">👰</div>
+      <div class="talk-avt"><img src="BridePhoto.jpg" alt="新婦"></div>
       <div class="talk-bwrap">
         <div class="talk-person">新婦</div>
         <div class="talk-bubble">一緒においしいものを食べて、たくさん笑って過ごしたいな。小さくても幸せな毎日を大切にしたい。</div>
@@ -231,12 +248,12 @@
 
     <p class="photo-intro">
       今日の素敵な瞬間をみんなでシェアしましょう。<br>
-      下のボタンから写真の閲覧・投稿ができます。
+      Wedding Share で写真、動画の投稿・閲覧ができます。
     </p>
 
     <!-- 写真共有リンク -->
     <!-- ▼ href="#" を Wedding Share の URL に変更 -->
-    <a class="ws-link-btn" href="#" target="_blank" rel="noopener">
+    <a class="ws-link-btn" href="https://www.weddingshare.me/weddings/blbgjxzjj7fgkbtv/B5WnupeJwWr06sy6Qn5kcyVfIrOPmYIi?openExternalBrowser=1&type=link" target="_blank" rel="noopener">
       <span class="ws-link-icon">📸</span>
       <span class="ws-link-text">写真共有はこちらから</span>
       <span class="ws-link-arrow">›</span>
@@ -292,9 +309,9 @@
     <p class="msg-intro">おふたりからゲストの皆さまへ、<br>一人ひとりへのメッセージをご用意しました。<br>お名前を入力してご覧ください。</p>
 
     <div class="msg-search-box">
-      <div class="msg-search-label">お名前を入力してください</div>
+      <div class="msg-search-label">お名前を入力してください（スペースなし・漢字フルネーム）</div>
       <div class="msg-input-row">
-        <input class="msg-input" id="msgInput" type="text" placeholder="例）田中 太郎" maxlength="30" inputmode="text" autocomplete="off">
+        <input class="msg-input" id="msgInput" type="text" placeholder="例）田中太郎" maxlength="30" inputmode="text" autocomplete="off">
         <button class="msg-search-btn" onclick="searchMessage()">表示</button>
       </div>
     </div>
@@ -324,7 +341,7 @@
       <div class="sec-title">Today's Music<span class="sec-title-en">Wedding Playlist</span></div>
       <div class="sec-ornament"><div class="sec-ornament-diamond"></div></div>
     </div>
-    <p class="music-intro">今日のために選んだ、大切な曲たちです。<br>ぜひ曲名をタップして聴いてみてください♪</p>
+    <p class="music-intro">今日のために選んだ、大切な曲たちです。<br>気になった曲があれば聞いてみてください</p>
     <!-- 曲カードはJavaScriptで動的に生成されます -->
     <div id="musicList"></div>
   </section>
@@ -333,12 +350,14 @@
 
 <footer class="site-footer">
   <div class="kamon">✿</div>
-  新郎の名前 &amp; 新婦の名前<br><!-- ▼ 変更 -->
-  2025年○月○日<!-- ▼ 変更 -->
+  啓介 &amp; 佑衣<br>
+  2026年5月16日<br>
+  THE KAWABUN NAGOYA
 </footer>
 
 
 <script src="messages.js"></script><!-- ゲストメッセージデータ -->
+<script src="quiz.js"></script><!-- 謎解きクイズ -->
 <script src="script.js"></script><!-- タブ・検索ロジック -->
 </body>
 </html>
