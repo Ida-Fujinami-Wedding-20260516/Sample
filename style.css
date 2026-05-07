@@ -50,7 +50,10 @@ button, input { font: inherit; color: inherit; }
 
 body {
   font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
-  background: var(--washi);
+  background-color: var(--washi);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 18% -10%, rgba(232,213,173,0.30), transparent 60%),
+    radial-gradient(ellipse 90% 60% at 82% 110%, rgba(202,216,188,0.22), transparent 60%);
   color: var(--pine);
   min-height: 100vh;
   overflow-x: hidden;
@@ -58,7 +61,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ---------- 背景：青海波 + 和紙テクスチャ（極薄） ---------- */
+/* ---------- 背景：和紙の繊維 + 微細な斑点 ---------- */
 body::before,
 body::after {
   content: '';
@@ -67,15 +70,19 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-/* 青海波 */
+/* 和紙の繊維（横方向に流れる薄茶のすじ） */
 body::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill='none' stroke='%231c3a23' stroke-width='0.55' opacity='0.09'%3E%3Cpath d='M0 40 A20 20 0 0 1 40 40 A20 20 0 0 1 80 40'/%3E%3Cpath d='M-40 40 A20 20 0 0 1 0 40 A20 20 0 0 1 40 40'/%3E%3Cpath d='M0 28 A14 14 0 0 1 28 28' /%3E%3Cpath d='M40 28 A14 14 0 0 1 68 28' /%3E%3Cpath d='M-12 28 A14 14 0 0 1 12 28' /%3E%3Cpath d='M0 18 A8 8 0 0 1 16 18' /%3E%3Cpath d='M24 18 A8 8 0 0 1 40 18' /%3E%3Cpath d='M48 18 A8 8 0 0 1 64 18' /%3E%3C/g%3E%3C/svg%3E");
-  background-size: 120px 60px;
-  opacity: 0.55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.55' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.40  0 0 0 0 0.32  0 0 0 0 0.18  0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E");
+  background-size: 600px 600px;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
 }
-/* 和紙ノイズ */
+/* 和紙の細かな斑点（植物繊維の混ざり） */
 body::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.30  0 0 0 0 0.22  0 0 0 0 0.12  0 0 0 0.7 -0.50'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+  background-size: 280px 280px;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
 }
 
 /* ---------- アニメーション ---------- */
@@ -109,7 +116,7 @@ body::after {
 .tab-nav-inner {
   display: flex;
   height: 100%;
-  padding: 0 10px;
+  padding: 0 4px;
   min-width: max-content;
   margin: 0 auto;
 }
@@ -119,10 +126,10 @@ body::after {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  padding: 8px 13px 10px;
+  padding: 8px 7px 10px;
   font-family: 'Shippori Mincho B1', 'Noto Serif JP', serif;
-  font-size: 9.5px;
-  letter-spacing: 0.18em;
+  font-size: 9px;
+  letter-spacing: 0.05em;
   color: var(--gray);
   background: none;
   border: none;
@@ -137,7 +144,7 @@ body::after {
   min-height: 48px;
 }
 .tab-btn > * { pointer-events: none; }
-.tab-btn .ti { font-size: 16px; line-height: 1; transition: transform .3s ease; }
+.tab-btn .ti { font-size: 14.5px; line-height: 1; transition: transform .3s ease; }
 .tab-btn:hover { color: var(--matcha); }
 .tab-btn:hover .ti { transform: translateY(-1px); }
 .tab-btn.active { color: var(--pine); font-weight: 500; }
@@ -1276,6 +1283,136 @@ body::after {
   margin-bottom: 14px;
   color: var(--gold);
   line-height: 1;
+}
+
+/* =========================================
+   装飾とアニメーション
+   ========================================= */
+
+/* ---------- 桜の花びらが舞う ---------- */
+.sakura-fall {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 100;
+}
+.petal {
+  position: absolute;
+  top: -8vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+.petal.p1, .petal.p3, .petal.p5 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C22 20 15 60 35 90 L50 78 L65 90 C85 60 78 20 50 5 Z' fill='%23eccccc' opacity='0.92'/%3E%3C/svg%3E");
+}
+.petal.p2, .petal.p4 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 C22 20 15 60 35 90 L50 78 L65 90 C85 60 78 20 50 5 Z' fill='%23d8c19a' opacity='0.85'/%3E%3C/svg%3E");
+}
+.petal.p1 { left:  8%; width: 14px; height: 14px; animation: petalFall 24s linear infinite; animation-delay:  0s; }
+.petal.p2 { left: 28%; width: 11px; height: 11px; animation: petalFall 32s linear infinite; animation-delay:  6s; }
+.petal.p3 { left: 50%; width: 13px; height: 13px; animation: petalFall 28s linear infinite; animation-delay: 14s; }
+.petal.p4 { left: 72%; width: 16px; height: 16px; animation: petalFall 36s linear infinite; animation-delay:  4s; }
+.petal.p5 { left: 90%; width: 12px; height: 12px; animation: petalFall 26s linear infinite; animation-delay: 18s; }
+
+@keyframes petalFall {
+  0%   { transform: translate3d(0, -8vh, 0) rotate(0deg);     opacity: 0; }
+  8%   { opacity: 0.7; }
+  50%  { transform: translate3d(-25px, 50vh, 0) rotate(360deg); opacity: 0.7; }
+  92%  { opacity: 0.5; }
+  100% { transform: translate3d(20px, 110vh, 0) rotate(720deg); opacity: 0; }
+}
+
+/* ---------- 祝の朱印 ---------- */
+.hero-seal {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  background: rgba(178,52,40,0.95);
+  color: #f8efde;
+  font-family: 'Shippori Mincho B1', 'Noto Serif JP', serif;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  z-index: 3;
+  letter-spacing: 0;
+  text-indent: 0;
+  box-shadow: 0 6px 18px -6px rgba(0,0,0,0.4);
+  transform: rotate(-4deg);
+  animation: sealAppear 1.1s cubic-bezier(.34,1.56,.64,1) 0.7s both;
+}
+.hero-seal::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 1px solid rgba(248,239,222,0.5);
+  border-radius: 2px;
+  pointer-events: none;
+}
+@keyframes sealAppear {
+  0%   { opacity: 0; transform: rotate(-4deg) scale(1.6); }
+  60%  { opacity: 1; transform: rotate(-4deg) scale(0.92); }
+  100% { opacity: 1; transform: rotate(-4deg) scale(1); }
+}
+
+/* ---------- セクション見出しのオーナメントの脈動 ---------- */
+.sec-ornament-diamond {
+  animation: diamondPulse 3.8s ease-in-out infinite;
+}
+@keyframes diamondPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(184,154,94,0.18); transform: rotate(45deg) scale(1); }
+  50%      { box-shadow: 0 0 0 6px rgba(184,154,94,0.05); transform: rotate(45deg) scale(1.14); }
+}
+
+.sec-head::before {
+  animation: lineGlow 3.4s ease-in-out infinite alternate;
+}
+@keyframes lineGlow {
+  from { opacity: 0.45; }
+  to   { opacity: 0.85; }
+}
+
+/* ---------- 名前の下に金線がスッと引かれる ---------- */
+.couple-block { position: relative; }
+.couple-block::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+  margin: 18px auto 0;
+  animation: drawWidth 1.6s ease-out 0.4s forwards;
+}
+@keyframes drawWidth {
+  to { width: 110px; }
+}
+
+/* ---------- セクション内の要素を順番にフェードアップ ---------- */
+.section.active > *:nth-child(1) { animation: fadeUp 0.55s ease 0.05s both; }
+.section.active > *:nth-child(2) { animation: fadeUp 0.55s ease 0.13s both; }
+.section.active > *:nth-child(3) { animation: fadeUp 0.55s ease 0.21s both; }
+.section.active > *:nth-child(4) { animation: fadeUp 0.55s ease 0.29s both; }
+.section.active > *:nth-child(5) { animation: fadeUp 0.55s ease 0.37s both; }
+.section.active > *:nth-child(n+6) { animation: fadeUp 0.55s ease 0.42s both; }
+
+/* ---------- prefers-reduced-motion 対応 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .petal,
+  .sec-ornament-diamond,
+  .sec-head::before,
+  .couple-block::after,
+  .hero-seal,
+  .section.active > * {
+    animation: none !important;
+  }
+  .couple-block::after { width: 110px; }
+  .hero-seal { opacity: 1; transform: rotate(-4deg) scale(1); }
 }
 
 /* =========================================
