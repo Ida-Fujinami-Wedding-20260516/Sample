@@ -131,7 +131,12 @@ body::after {
   white-space: nowrap;
   transition: color 0.3s ease;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  min-height: 48px;
 }
+.tab-btn > * { pointer-events: none; }
 .tab-btn .ti { font-size: 16px; line-height: 1; transition: transform .3s ease; }
 .tab-btn:hover { color: var(--matcha); }
 .tab-btn:hover .ti { transform: translateY(-1px); }
@@ -139,12 +144,13 @@ body::after {
 .tab-btn.active::after {
   content: '';
   position: absolute;
-  bottom: 6px; left: 50%;
+  bottom: 4px; left: 50%;
   transform: translateX(-50%);
   width: 22px;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold) 40%, var(--gold) 60%, transparent);
   border-radius: 2px;
+  pointer-events: none;
 }
 
 /* ---------- メイン ---------- */
@@ -1269,17 +1275,7 @@ body::after {
   font-size: 22px;
   margin-bottom: 14px;
   color: var(--gold);
-  display: inline-block;
-  position: relative;
-}
-.site-footer .kamon::before, .site-footer .kamon::after {
-  content: '';
-  display: inline-block;
-  vertical-align: middle;
-  width: 24px; height: 1px;
-  background: var(--gold);
-  opacity: 0.45;
-  margin: 0 12px 4px;
+  line-height: 1;
 }
 
 /* =========================================
